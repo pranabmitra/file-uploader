@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-const files = (state = [], action) => {
+const files = (state = {}, action) => {
     switch (action.type) {
         case 'ADD_FILE':
             return [...state, action.file]
