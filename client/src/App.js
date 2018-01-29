@@ -12,9 +12,9 @@ class App extends Component {
     }
 
     _handleFileUpload = files => {
-        for(let i = 0; i < files.length; i++) {
-            this.state.files.push(files[i]);
-        }
+        this.setState({
+            files: [...this.state.files, ...files]
+        });
 
         this.props.dispatch(addFile(files));
     }
@@ -26,10 +26,10 @@ class App extends Component {
     }
 
     renderList() {
-        return this.state.files.map((file) => {
+        return this.state.files.map((file, index) => {
             return (
 
-                <li key={file.name} className="collection-item">
+                <li key={index} className="collection-item">
                     <div>
                         {file.name}
                         <a onClick={ () => this._removeFile(file.name)} className="secondary-content" style={{cursor:'pointer'}}>
